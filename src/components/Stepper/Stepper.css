@@ -1,0 +1,128 @@
+.stepper__track {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  padding: var(--space-lg) 0;
+}
+
+.stepper__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  max-width: 140px;
+}
+
+.stepper__line {
+  position: absolute;
+  top: 18px;
+  right: 50%;
+  width: 100%;
+  height: 3px;
+  background: var(--color-border);
+  z-index: 0;
+  transition: background 0.3s ease;
+}
+
+.stepper__line--filled {
+  background: var(--color-primary);
+}
+
+.stepper__circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+  border: 3px solid var(--color-border);
+  background: var(--color-white);
+  color: var(--color-text-muted);
+  cursor: default;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.stepper__circle--completed {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.stepper__circle--completed:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.stepper__circle--active {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(73, 157, 182, 0.2);
+}
+
+.stepper__circle--upcoming {
+  opacity: 0.5;
+}
+
+.stepper__check {
+  width: 16px;
+  height: 16px;
+}
+
+.stepper__label {
+  margin-top: var(--space-sm);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.stepper__label--active {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.stepper__mobile {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md) 0;
+}
+
+.stepper__mobile-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--color-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.stepper__mobile-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.stepper__mobile-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .stepper__track {
+    display: none;
+  }
+  .stepper__mobile {
+    display: flex;
+  }
+}
