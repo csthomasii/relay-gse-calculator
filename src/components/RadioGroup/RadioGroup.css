@@ -12,18 +12,22 @@
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s var(--ease-smooth);
   background: var(--color-white);
 }
 
 .radio-option:hover {
   border-color: var(--color-primary);
   background: #f0f8fa;
+  box-shadow: var(--shadow-sm);
 }
 
 .radio-option--selected {
   border-color: var(--color-primary);
+  border-left: 4px solid var(--color-primary);
   background: #eef6f9;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .radio-option input[type="radio"] {
@@ -40,7 +44,7 @@
   border: 2px solid var(--color-border);
   border-radius: 50%;
   position: relative;
-  transition: all 0.2s ease;
+  transition: all 0.2s var(--ease-smooth);
 }
 
 .radio-option--selected .radio-option__indicator {
@@ -56,6 +60,18 @@
   height: 12px;
   border-radius: 50%;
   background: var(--color-primary);
+  animation: radioFill 0.25s var(--ease-spring) both;
+}
+
+@keyframes radioFill {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .radio-option__label {
@@ -68,5 +84,9 @@
   .radio-option {
     padding: var(--space-md);
     min-height: 48px;
+  }
+
+  .radio-option--selected {
+    transform: none;
   }
 }

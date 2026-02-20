@@ -10,6 +10,9 @@ interface WizardStepProps {
   canProceed: boolean;
   isFirstStep: boolean;
   isLastQuestionStep: boolean;
+  stepNumber?: number;
+  totalSteps?: number;
+  direction?: "forward" | "back";
 }
 
 export function WizardStep({
@@ -21,10 +24,23 @@ export function WizardStep({
   canProceed,
   isFirstStep,
   isLastQuestionStep,
+  stepNumber,
+  totalSteps,
+  direction = "forward",
 }: WizardStepProps) {
+  const directionClass =
+    direction === "back"
+      ? "wizard-step--enter-back"
+      : "wizard-step--enter-forward";
+
   return (
-    <div className="wizard-step">
+    <div className={`wizard-step ${directionClass}`}>
       <div className="wizard-step__content">
+        {stepNumber != null && totalSteps != null && (
+          <p className="wizard-step__label">
+            Step {stepNumber} of {totalSteps}
+          </p>
+        )}
         <h2 className="wizard-step__question">{question}</h2>
         {helperText && (
           <p className="wizard-step__helper">{helperText}</p>

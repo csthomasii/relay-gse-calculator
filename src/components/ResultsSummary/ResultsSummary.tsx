@@ -1,5 +1,6 @@
 import type { CalculationResult } from "../../types/calculator";
 import { formatCurrency } from "../../utils/calculations";
+import { useCountUp } from "../../hooks/useCountUp";
 import "./ResultsSummary.css";
 
 interface ResultsSummaryProps {
@@ -7,10 +8,16 @@ interface ResultsSummaryProps {
   onStartOver: () => void;
 }
 
+/** Base delay (ms) for staggered row animations; each row adds ROW_STAGGER */
+const BASE_ROW_DELAY = 400;
+const ROW_STAGGER = 80;
+
 export function ResultsSummary({ result, onStartOver }: ResultsSummaryProps) {
   const { totalTuition, programLabel, offsets, totalOffsets, estimatedOutOfPocket } =
     result;
   const offsetsExceedTuition = totalOffsets > totalTuition;
+
+  const animatedOutOfPocket = useCountUp(estimatedOutOfPocket, 800);
 
   return (
     <div className="results-summary">
@@ -26,10 +33,11 @@ export function ResultsSummary({ result, onStartOver }: ResultsSummaryProps) {
 
       <div className="results-summary__table">
         <h3 className="results-summary__section-title">Estimated Tuition Offsets</h3>
-        {offsets.map((offset) => (
+        {offsets.map((offset, index) => (
           <div
             key={offset.id}
             className={`results-summary__row ${!offset.eligible ? "results-summary__row--ineligible" : ""}`}
+            style={{ animationDelay: `${BASE_ROW_DELAY + index * ROW_STAGGER}ms` }}
           >
             <div className="results-summary__row-main">
               <span
@@ -56,7 +64,10 @@ export function ResultsSummary({ result, onStartOver }: ResultsSummaryProps) {
 
         <div className="results-summary__divider" />
 
-        <div className="results-summary__row results-summary__row--total-offsets">
+        <div
+          className="results-summary__row results-summary__row--total-offsets"
+          style={{ animationDelay: `${BASE_ROW_DELAY + offsets.length * ROW_STAGGER}ms` }}
+        >
           <div className="results-summary__row-main">
             <span className="results-summary__row-label">
               Total Estimated Offsets
@@ -69,13 +80,16 @@ export function ResultsSummary({ result, onStartOver }: ResultsSummaryProps) {
 
         <div className="results-summary__divider results-summary__divider--thick" />
 
-        <div className="results-summary__row results-summary__row--final">
+        <div
+          className="results-summary__row results-summary__row--final"
+          style={{ animationDelay: `${BASE_ROW_DELAY + (offsets.length + 1) * ROW_STAGGER}ms` }}
+        >
           <div className="results-summary__row-main">
             <span className="results-summary__row-label">
               Estimated Out-of-Pocket Cost
             </span>
             <span className="results-summary__row-amount results-summary__row-amount--final">
-              {formatCurrency(estimatedOutOfPocket)}
+              {formatCurrency(animatedOutOfPocket)}
               {offsetsExceedTuition && " *"}
             </span>
           </div>

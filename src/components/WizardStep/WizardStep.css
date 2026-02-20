@@ -1,10 +1,56 @@
+/* Step entrance animations */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .wizard-step {
   background: var(--color-white);
   border-radius: var(--radius-lg);
   padding: var(--space-2xl);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
   max-width: 640px;
   margin: 0 auto;
+  transition: box-shadow var(--transition-med), transform var(--transition-med);
+}
+
+.wizard-step:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+}
+
+.wizard-step--enter-forward {
+  animation: slideInFromRight 0.35s var(--ease-smooth) both;
+}
+
+.wizard-step--enter-back {
+  animation: slideInFromLeft 0.35s var(--ease-smooth) both;
+}
+
+.wizard-step__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
 }
 
 .wizard-step__content {
@@ -50,7 +96,7 @@
   border-radius: var(--radius-md);
   border: 2px solid transparent;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
 }
 
 .wizard-step__btn--back {
@@ -62,16 +108,23 @@
 .wizard-step__btn--back:hover {
   border-color: var(--color-text-muted);
   color: var(--color-text);
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .wizard-step__btn--next {
-  background: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: var(--color-white);
   margin-left: auto;
 }
 
 .wizard-step__btn--next:hover:not(:disabled) {
-  background: var(--color-primary-dark);
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  transform: scale(1.02);
+  box-shadow: var(--shadow-sm);
+}
+
+.wizard-step__btn--next:active:not(:disabled) {
+  transform: scale(0.98);
 }
 
 .wizard-step__btn--next:disabled {
@@ -83,6 +136,10 @@
   .wizard-step {
     padding: var(--space-lg);
     border-radius: var(--radius-md);
+  }
+
+  .wizard-step:hover {
+    transform: none;
   }
 
   .wizard-step__question {

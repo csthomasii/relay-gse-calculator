@@ -1,3 +1,4 @@
+import { useRef, useEffect, useState } from "react";
 import { useCalculator, TOTAL_QUESTION_STEPS } from "./hooks/useCalculator";
 import { PROGRAMS, PROGRAM_KEYS } from "./data/programs";
 import { Stepper } from "./components/Stepper/Stepper";
@@ -90,6 +91,16 @@ export function Calculator() {
   const { state, dispatch, canProceed, isFirstStep, isResultsStep, totalSteps } =
     useCalculator();
 
+  const prevStepRef = useRef(state.currentStep);
+  const [direction, setDirection] = useState<"forward" | "back">("forward");
+
+  useEffect(() => {
+    if (state.currentStep !== prevStepRef.current) {
+      setDirection(state.currentStep > prevStepRef.current ? "forward" : "back");
+      prevStepRef.current = state.currentStep;
+    }
+  }, [state.currentStep]);
+
   const handleSetAnswer = (field: keyof CalculatorAnswers, value: string) => {
     dispatch({ type: "SET_ANSWER", field, value });
   };
@@ -177,6 +188,7 @@ export function Calculator() {
         </div>
       ) : (
         <WizardStep
+          key={state.currentStep}
           question={STEP_CONFIGS[state.currentStep].question}
           helperText={STEP_CONFIGS[state.currentStep].helperText}
           canProceed={canProceed}
@@ -184,6 +196,9 @@ export function Calculator() {
           isLastQuestionStep={state.currentStep === TOTAL_QUESTION_STEPS - 1}
           onNext={() => dispatch({ type: "NEXT_STEP" })}
           onBack={() => dispatch({ type: "PREV_STEP" })}
+          stepNumber={state.currentStep + 1}
+          totalSteps={TOTAL_QUESTION_STEPS}
+          direction={direction}
         >
           {renderStepInput(state.currentStep)}
         </WizardStep>

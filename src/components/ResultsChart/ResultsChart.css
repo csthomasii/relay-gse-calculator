@@ -1,5 +1,17 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .results-chart {
   margin-bottom: var(--space-xl);
+  animation: fadeIn 0.5s var(--ease-smooth) both;
 }
 
 .results-chart__title {
@@ -20,7 +32,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: var(--space-sm) var(--space-md);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-md);
   font-size: 0.8125rem;
 }
 
