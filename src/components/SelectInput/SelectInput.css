@@ -24,7 +24,7 @@
 .select-input__select:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(73, 157, 182, 0.2);
+  box-shadow: 0 0 0 3px rgba(44, 73, 164, 0.2);
 }
 
 .select-input__select--placeholder {

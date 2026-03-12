@@ -19,7 +19,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-dark));
+  background: linear-gradient(90deg, #2C49A4, #B30838);
 }
 
 .app__header-inner {
@@ -33,7 +33,7 @@
 }
 
 .app__logo-svg {
-  height: 36px;
+  height: 50px;
   width: auto;
 }
 

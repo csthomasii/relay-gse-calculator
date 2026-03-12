@@ -10,8 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fontsource/inconsolata": "^5.2.8",
-    "@fontsource/open-sans": "^5.2.7",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "recharts": "^3.7.0"

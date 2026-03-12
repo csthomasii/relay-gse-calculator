@@ -79,7 +79,7 @@ export function ResultsChart({ result }: ResultsChartProps) {
 
   // Legend items
   const legendItems = [
-    { label: "Total Tuition", color: "#8a8a8a" },
+    { label: "Total Tuition", color: "#898A8D" },
     ...eligibleOffsets.map((o) => ({ label: o.label, color: o.color })),
     ...(estimatedOutOfPocket > 0
       ? [{ label: "Estimated Out-of-Pocket", color: OUT_OF_POCKET_COLOR }]
@@ -109,7 +109,7 @@ export function ResultsChart({ result }: ResultsChartProps) {
               ]}
               tickFormatter={(v: number) => formatCurrency(v)}
               fontSize={12}
-              tick={{ fill: "#666" }}
+              tick={{ fill: "#898A8D" }}
             />
             <YAxis
               type="category"
@@ -117,7 +117,7 @@ export function ResultsChart({ result }: ResultsChartProps) {
               width={90}
               fontSize={13}
               fontWeight={600}
-              tick={{ fill: "#333" }}
+              tick={{ fill: "#1D3557" }}
             />
             <Tooltip content={<CustomTooltip />} />
 
@@ -125,7 +125,7 @@ export function ResultsChart({ result }: ResultsChartProps) {
             <Bar
               dataKey="tuition"
               stackId="a"
-              fill="#8a8a8a"
+              fill="#898A8D"
               radius={[0, 4, 4, 0]}
             >
               <LabelList
@@ -159,7 +159,7 @@ export function ResultsChart({ result }: ResultsChartProps) {
                   dataKey="outOfPocket"
                   position="center"
                   formatter={makeLabelFormatter(0.12, totalTuition)}
-                  style={{ fill: "#333", fontWeight: 700, fontSize: 12 }}
+                  style={{ fill: "#1D3557", fontWeight: 700, fontSize: 12 }}
                 />
               </Bar>
             )}

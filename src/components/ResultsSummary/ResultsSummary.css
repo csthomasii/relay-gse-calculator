@@ -97,7 +97,7 @@
 
 .results-summary__pslf {
   padding: var(--space-lg);
-  background: #f0f8fa;
+  background: #f0f2f8;
   border-left: 3px solid var(--color-primary);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
   margin-bottom: var(--space-lg);

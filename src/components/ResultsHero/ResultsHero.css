@@ -75,7 +75,7 @@
   font-style: italic;
   margin-top: var(--space-lg);
   padding: var(--space-md);
-  background: #fffbf0;
+  background: #fef9f0;
   border-left: 3px solid var(--color-loan-forgiveness);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   text-align: left;
