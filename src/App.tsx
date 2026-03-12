@@ -13,8 +13,9 @@ function App() {
               aria-label="Relay Graduate School of Education"
             >
               <text
-                x="0"
+                x="130"
                 y="30"
+                textAnchor="middle"
                 fontFamily="Calibri, 'Helvetica Neue', Helvetica, Arial, sans-serif"
                 fontWeight="800"
                 fontSize="32"
@@ -25,8 +26,9 @@ function App() {
                 <tspan fill="#6D97C9">GSE</tspan>
               </text>
               <text
-                x="0"
+                x="130"
                 y="46"
+                textAnchor="middle"
                 fontFamily="Calibri, 'Helvetica Neue', Helvetica, Arial, sans-serif"
                 fontWeight="600"
                 fontSize="9.5"
