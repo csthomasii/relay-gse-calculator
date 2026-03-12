@@ -1,6 +1,5 @@
 import type { CalculationResult } from "../../types/calculator";
 import { formatCurrency } from "../../utils/calculations";
-import { useCountUp } from "../../hooks/useCountUp";
 import "./ResultsSummary.css";
 
 interface ResultsSummaryProps {
@@ -13,24 +12,10 @@ const BASE_ROW_DELAY = 400;
 const ROW_STAGGER = 80;
 
 export function ResultsSummary({ result, onStartOver }: ResultsSummaryProps) {
-  const { totalTuition, programLabel, offsets, totalOffsets, estimatedOutOfPocket } =
-    result;
-  const offsetsExceedTuition = totalOffsets > totalTuition;
-
-  const animatedOutOfPocket = useCountUp(estimatedOutOfPocket, 800);
+  const { offsets, totalOffsets } = result;
 
   return (
     <div className="results-summary">
-      <div className="results-summary__header">
-        <h2 className="results-summary__program">{programLabel}</h2>
-        <div className="results-summary__total">
-          <span className="results-summary__total-label">Total Tuition</span>
-          <span className="results-summary__total-amount">
-            {formatCurrency(totalTuition)}
-          </span>
-        </div>
-      </div>
-
       <div className="results-summary__table">
         <h3 className="results-summary__section-title">Estimated Tuition Offsets</h3>
         {offsets.map((offset, index) => (
@@ -77,33 +62,7 @@ export function ResultsSummary({ result, onStartOver }: ResultsSummaryProps) {
             </span>
           </div>
         </div>
-
-        <div className="results-summary__divider results-summary__divider--thick" />
-
-        <div
-          className="results-summary__row results-summary__row--final"
-          style={{ animationDelay: `${BASE_ROW_DELAY + (offsets.length + 1) * ROW_STAGGER}ms` }}
-        >
-          <div className="results-summary__row-main">
-            <span className="results-summary__row-label">
-              Estimated Out-of-Pocket Cost
-            </span>
-            <span className="results-summary__row-amount results-summary__row-amount--final">
-              {formatCurrency(animatedOutOfPocket)}
-              {offsetsExceedTuition && " *"}
-            </span>
-          </div>
-        </div>
       </div>
-
-      {offsetsExceedTuition && (
-        <p className="results-summary__note">
-          * Your estimated offsets exceed total tuition. Some offsets (e.g.,
-          Teacher Loan Forgiveness) are applied to federal student loan balances
-          and may not reduce upfront costs but will reduce your total repayment
-          obligation.
-        </p>
-      )}
 
       <div className="results-summary__pslf">
         <h4 className="results-summary__pslf-title">
@@ -128,7 +87,6 @@ export function ResultsSummary({ result, onStartOver }: ResultsSummaryProps) {
           obligation; failure to meet these requirements converts the grant to a
           federal loan with interest. Teacher Loan Forgiveness is applied to
           federal student loan balances after 5 years of qualifying service.
-          Relay need-based aid is an average figure; your award may differ.
         </p>
       </div>
 

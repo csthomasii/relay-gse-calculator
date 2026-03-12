@@ -5,6 +5,7 @@ import { Stepper } from "./components/Stepper/Stepper";
 import { WizardStep } from "./components/WizardStep/WizardStep";
 import { RadioGroup } from "./components/RadioGroup/RadioGroup";
 import { SelectInput } from "./components/SelectInput/SelectInput";
+import { ResultsHero } from "./components/ResultsHero/ResultsHero";
 import { ResultsChart } from "./components/ResultsChart/ResultsChart";
 import { ResultsSummary } from "./components/ResultsSummary/ResultsSummary";
 import type { CalculatorAnswers } from "./types/calculator";
@@ -20,20 +21,18 @@ const YES_NO_OPTIONS = [
 ];
 
 const AMERICORPS_OPTIONS = [
-  { value: "no", label: "No, I have not served in AmeriCorps" },
   {
-    value: "already_served",
-    label: "Yes, I have already completed a service term",
+    value: "plan_to_enroll",
+    label: "No, and I plan to enroll in AmeriCorps while at Relay",
   },
   {
-    value: "enroll_at_relay",
-    label: "I plan to enroll in AmeriCorps while at Relay",
+    value: "already_served",
+    label: "Yes, I have completed a service term",
   },
 ];
 
 const SUBJECT_OPTIONS = [
-  { value: "math_science", label: "Mathematics or Science" },
-  { value: "special_education", label: "Special Education" },
+  { value: "stem_sped", label: "Mathematics, Science, or Special Education" },
   { value: "other", label: "Other subject area" },
 ];
 
@@ -51,20 +50,19 @@ interface StepConfig {
 const STEP_CONFIGS: StepConfig[] = [
   {
     question: "Which Relay program are you considering?",
-    helperText:
-      "Select the program you plan to enroll in. Tuition varies by program length and specialization.",
+    helperText: "",
     field: "program",
   },
   {
-    question: "What is your AmeriCorps status?",
+    question: "Have you completed an AmeriCorps service term?",
     helperText:
-      "Each AmeriCorps service term earns a $7,395 Segal Education Award that can be applied directly to Relay tuition. Students can also enroll in AmeriCorps while at Relay and earn up to two awards (one per year of enrollment), as long as they have no prior AmeriCorps service.",
+      "As an AmeriCorps member, you can earn a Segal Education Award worth up to $7,395 that can be applied to your tuition.",
     field: "hasAmeriCorps",
   },
   {
     question: "Do you plan to apply for the federal TEACH Grant?",
     helperText:
-      "Because Relay programs are half-time, the TEACH Grant provides up to $1,886 per year (half of the $3,772 full-time maximum). It requires a 3.25 GPA and a commitment to teach full-time in a high-need field at a low-income school for 4 years after graduation. If the service obligation is not met, the grant converts to a federal loan with interest.",
+      "As a Relay student, you may be eligible for up to $1,886 per year in TEACH tuition grants.",
     field: "teachGrantEligible",
   },
   {
@@ -80,10 +78,10 @@ const STEP_CONFIGS: StepConfig[] = [
     field: "teachingDuration",
   },
   {
-    question: "Include Relay's average need-based aid in your estimate?",
+    question: "Do you plan to take out federal student loans?",
     helperText:
-      "In 2023-24, Relay disbursed over $28 million in total aid. The average need-based institutional award is approximately $6,072, distributed on a first-come, first-served basis. Your actual award may differ.",
-    field: "applyNeedBasedAid",
+      "Federal student loans can be forgiven through programs like Teacher Loan Forgiveness and Public Service Loan Forgiveness, which are already reflected in your estimate.",
+    field: "planFederalLoans",
   },
 ];
 
@@ -159,10 +157,10 @@ export function Calculator() {
       case 5:
         return (
           <RadioGroup
-            name="needBasedAid"
+            name="federalLoans"
             options={YES_NO_OPTIONS}
             value={currentValue}
-            onChange={(v) => handleSetAnswer("applyNeedBasedAid", v)}
+            onChange={(v) => handleSetAnswer("planFederalLoans", v)}
           />
         );
       default:
@@ -180,6 +178,7 @@ export function Calculator() {
 
       {isResultsStep && state.result ? (
         <div className="calculator__results">
+          <ResultsHero result={state.result} />
           <ResultsChart result={state.result} />
           <ResultsSummary
             result={state.result}

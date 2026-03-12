@@ -6,7 +6,7 @@ const STEP_LABELS = [
   "TEACH Grant",
   "Subject",
   "Teaching Years",
-  "Relay Aid",
+  "Loans",
 ];
 
 interface StepperProps {

@@ -13,19 +13,18 @@ export function computeResult(answers: CalculatorAnswers): CalculationResult {
   const offsets: OffsetLineItem[] = [];
 
   // AmeriCorps Segal Education Award
-  const americorpsEligible = answers.hasAmeriCorps !== "no";
   let americorpsAwards = 0;
   let americorpsLabel = OFFSETS.americorps.label;
   if (answers.hasAmeriCorps === "already_served") {
     americorpsAwards = 1;
     americorpsLabel += " (1 award)";
-  } else if (answers.hasAmeriCorps === "enroll_at_relay") {
-    // Students can enroll for up to 2 years and earn 2 awards
+  } else if (answers.hasAmeriCorps === "plan_to_enroll") {
     const estimatedYears = program.credits <= 21 ? 1 : 2;
     americorpsAwards = estimatedYears;
     americorpsLabel += ` (${estimatedYears} award${estimatedYears > 1 ? "s" : ""})`;
   }
   const americorpsAmount = americorpsAwards * OFFSETS.americorps.amountPerAward;
+  const americorpsEligible = americorpsAmount > 0;
   offsets.push({
     id: OFFSETS.americorps.id,
     label: americorpsLabel,
@@ -63,9 +62,7 @@ export function computeResult(answers: CalculatorAnswers): CalculationResult {
   let forgivenessAmount = 0;
   let forgivenessLabel = OFFSETS.teacherLoanForgiveness.label;
   if (qualifiesForForgiveness) {
-    const isStemOrSped =
-      answers.subjectArea === "math_science" ||
-      answers.subjectArea === "special_education";
+    const isStemOrSped = answers.subjectArea === "stem_sped";
     forgivenessAmount = isStemOrSped
       ? OFFSETS.teacherLoanForgiveness.stemSpedAmount
       : OFFSETS.teacherLoanForgiveness.standardAmount;
@@ -78,17 +75,6 @@ export function computeResult(answers: CalculatorAnswers): CalculationResult {
     color: OFFSETS.teacherLoanForgiveness.color,
     description: OFFSETS.teacherLoanForgiveness.description,
     eligible: qualifiesForForgiveness,
-  });
-
-  // Relay Need-Based Aid
-  const includeNeedBasedAid = answers.applyNeedBasedAid === "yes";
-  offsets.push({
-    id: OFFSETS.relayNeedBasedAid.id,
-    label: OFFSETS.relayNeedBasedAid.label,
-    amount: includeNeedBasedAid ? OFFSETS.relayNeedBasedAid.amount : 0,
-    color: OFFSETS.relayNeedBasedAid.color,
-    description: OFFSETS.relayNeedBasedAid.description,
-    eligible: includeNeedBasedAid,
   });
 
   const totalOffsets = offsets.reduce((sum, o) => sum + o.amount, 0);

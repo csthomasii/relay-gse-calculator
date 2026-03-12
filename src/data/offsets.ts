@@ -26,12 +26,4 @@ export const OFFSETS = {
     description:
       "Applied to federal student loan balances after 5 consecutive years of full-time teaching at a Title I school. Math, science, and special education teachers may qualify for up to $17,500.",
   },
-  relayNeedBasedAid: {
-    id: "relayAid",
-    label: "Relay Need-Based Aid (avg.)",
-    amount: 6_072,
-    color: "#7B2D8E",
-    description:
-      "Average institutional aid distributed on a first-come, first-served basis. Actual amounts vary by individual circumstances.",
-  },
 } as const;

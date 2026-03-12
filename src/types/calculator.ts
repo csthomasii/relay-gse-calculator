@@ -7,13 +7,13 @@ export type Program =
   | "alt_cert_24"
   | "adv_cert_sped";
 
-export type SubjectArea = "math_science" | "special_education" | "other";
+export type SubjectArea = "stem_sped" | "other";
 
 export type TeachingDuration = "less_than_5" | "5_or_more";
 
 export type YesNo = "yes" | "no";
 
-export type AmeriCorpsStatus = "no" | "already_served" | "enroll_at_relay";
+export type AmeriCorpsStatus = "plan_to_enroll" | "already_served";
 
 export interface CalculatorAnswers {
   program: Program | null;
@@ -21,7 +21,7 @@ export interface CalculatorAnswers {
   teachGrantEligible: YesNo | null;
   subjectArea: SubjectArea | null;
   teachingDuration: TeachingDuration | null;
-  applyNeedBasedAid: YesNo | null;
+  planFederalLoans: YesNo | null;
 }
 
 export interface OffsetLineItem {

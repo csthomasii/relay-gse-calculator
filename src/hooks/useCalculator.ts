@@ -14,7 +14,7 @@ const FIELD_BY_STEP: (keyof CalculatorAnswers)[] = [
   "teachGrantEligible",
   "subjectArea",
   "teachingDuration",
-  "applyNeedBasedAid",
+  "planFederalLoans",
 ];
 
 const initialAnswers: CalculatorAnswers = {
@@ -23,7 +23,7 @@ const initialAnswers: CalculatorAnswers = {
   teachGrantEligible: null,
   subjectArea: null,
   teachingDuration: null,
-  applyNeedBasedAid: null,
+  planFederalLoans: null,
 };
 
 const initialState: WizardState = {

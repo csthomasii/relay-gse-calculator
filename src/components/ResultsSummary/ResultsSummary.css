@@ -19,39 +19,6 @@
   animation: fadeSlideUp 0.5s var(--ease-smooth) 0.15s both;
 }
 
-.results-summary__header {
-  margin-bottom: var(--space-xl);
-  padding-bottom: var(--space-lg);
-  border-bottom: 2px solid var(--color-border);
-  animation: fadeSlideUp 0.4s var(--ease-smooth) 0.25s both;
-}
-
-.results-summary__program {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-sm);
-}
-
-.results-summary__total {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.results-summary__total-label {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.results-summary__total-amount {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: var(--color-text);
-  font-family: var(--font-mono);
-}
-
 .results-summary__table {
   margin-bottom: var(--space-lg);
 }
@@ -102,11 +69,6 @@
   white-space: nowrap;
 }
 
-.results-summary__row-amount--final {
-  font-size: 1.5rem;
-  color: var(--color-primary);
-}
-
 .results-summary__row-note {
   font-size: 0.8125rem;
   color: var(--color-text-muted);
@@ -129,29 +91,8 @@
   margin: var(--space-sm) 0;
 }
 
-.results-summary__divider--thick {
-  height: 2px;
-  background: var(--color-text);
-}
-
 .results-summary__row--total-offsets .results-summary__row-label {
   font-weight: 600;
-}
-
-.results-summary__row--final .results-summary__row-label {
-  font-size: 1.125rem;
-  font-weight: 700;
-}
-
-.results-summary__note {
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-  font-style: italic;
-  margin-bottom: var(--space-lg);
-  padding: var(--space-md);
-  background: #fffbf0;
-  border-left: 3px solid var(--color-loan-forgiveness);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
 .results-summary__pslf {
@@ -235,14 +176,6 @@
 @media (max-width: 767px) {
   .results-summary {
     padding: var(--space-lg);
-  }
-
-  .results-summary__total-amount {
-    font-size: 1.375rem;
-  }
-
-  .results-summary__row-amount--final {
-    font-size: 1.25rem;
   }
 
   .results-summary__actions {
